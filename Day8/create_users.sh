@@ -16,4 +16,3 @@ for username in "${array[@]}"; do
         echo "User '$username' has been created."
     fi
 done
-echo "---------------------------------"
