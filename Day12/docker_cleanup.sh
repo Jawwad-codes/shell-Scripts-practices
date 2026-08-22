@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Stopped containers found:"
+echo "Stopped containers found"
 docker ps -a --filter "status=exited" --filter "status=created"
 
 printf "Do you want to remove all stopped containers? (y/n): "
