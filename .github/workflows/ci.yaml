@@ -17,6 +17,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           APP_ENV: ${{ secrets.APP_ENV }}
         
-        run: .Day15/validation_cicd_env.sh DATABASE_URL AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY APP_ENV
+        run: ./Day15/validation_cicd_env.sh DATABASE_URL AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY APP_ENV
          
           
