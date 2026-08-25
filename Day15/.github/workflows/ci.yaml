@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: validate environment
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          APP_ENV: ${{ secrets.APP_ENV }}
+        
+        run: ./validate_cicd_env.sh DATABASE_URL AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY APP_ENV
+         
+          
