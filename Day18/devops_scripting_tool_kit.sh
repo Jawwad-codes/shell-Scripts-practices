@@ -29,11 +29,27 @@ function show_menu() {
 
 function system_info()             { bash "$BASE_DIR/Day1/system_info.sh"; }
 function disk_usage()              { bash "$BASE_DIR/Day2/disk_check.sh"; }
-function backup_directory()        { bash "$BASE_DIR/Day3/backup.sh"; }
-function log_analysis()            { bash "$BASE_DIR/Day4/log_analyzer.sh"; }
-function process_check()           { bash "$BASE_DIR/Day5/process_check.sh"; }
-function service_check_systemctl() { bash "$BASE_DIR/Day6/service_check_using_Sytemctl.sh"; }
-function service_check()           { bash "$BASE_DIR/Day6/service_check.sh"; }
+function backup_directory() {
+    read -rp "Enter directory to backup: " backup_path
+    bash "$BASE_DIR/Day3/backup.sh" "$backup_path"
+}
+function log_analysis() { 
+    read -rp "Enter log file path to analyze: " log_file_path
+    bash "$BASE_DIR/Day4/log_analyzer.sh" "$log_file_path"      
+}
+function process_check() { 
+    read -rp "Enter process name to check: " process_name
+    bash "$BASE_DIR/Day5/process_check.sh" "$process_name"  
+
+}
+function service_check_systemctl() { 
+    read -rp "Enter service name(s) to check (space-separated): " -a service_names
+    bash "$BASE_DIR/Day6/service_check_using_Sytemctl.sh" "${service_names[@]}"
+}
+function service_check() {
+    read -rp "Enter service name(s) to check (space-separated): " -a service_names
+    bash "$BASE_DIR/Day6/service_check.sh" "${service_names[@]}" 
+}
 function cleanup_old_logs()        { bash "$BASE_DIR/Day7/cleanup_log.sh"; }
 function create_user()             { bash "$BASE_DIR/Day8/create_users.sh"; }
 function port_check()              { bash "$BASE_DIR/Day9/port_check.sh"; }
@@ -74,7 +90,6 @@ while true; do
         18) server_health_report ;;
         19) log_archive ;;
         0)  echo "Goodbye!"; exit 0 ;;
-        *)  echo "Invalid option, try again." ;;
     esac
 
     echo ""
