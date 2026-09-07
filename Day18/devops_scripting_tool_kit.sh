@@ -50,14 +50,34 @@ function service_check() {
     read -rp "Enter service name(s) to check (space-separated): " -a service_names
     bash "$BASE_DIR/Day6/service_check.sh" "${service_names[@]}" 
 }
-function cleanup_old_logs()        { bash "$BASE_DIR/Day7/cleanup_log.sh"; }
-function create_user()             { bash "$BASE_DIR/Day8/create_users.sh"; }
-function port_check()              { bash "$BASE_DIR/Day9/port_check.sh"; }
-function website_health_check()    { bash "$BASE_DIR/Day10/website_check.sh"; }
+function cleanup_old_logs() { 
+    read -rp "Enter log directory to clean up: " log_dir
+    bash "$BASE_DIR/Day7/cleanup_log.sh" "$log_dir"
+
+}
+function create_user() { 
+    read -rp "Enter username to create: " -a username
+    bash "$BASE_DIR/Day8/create_users.sh" "${username[@]}"
+}
+function port_check() { 
+    read -rp "Enter port number to check: " -a port_number
+    bash "$BASE_DIR/Day9/port_check.sh" "${port_number[@]}"
+}
+function website_health_check() { 
+    read -rp "Enter website URL to check: " -a website_url
+    bash "$BASE_DIR/Day10/website_check.sh" "${website_url[@]}"
+}
 function docker_check()            { bash "$BASE_DIR/Day11/docker_check.sh"; }
 function docker_cleanup()          { bash "$BASE_DIR/Day12/docker_cleanup.sh"; }
-function git_backup()              { bash "$BASE_DIR/Day13/git_backup.sh"; }
-function deploy_web_app()          { bash "$BASE_DIR/Day14/deploy.sh"; }
+function git_backup() { 
+    read -rp "Enter path of the Git repository to backup: " repo_path
+    bash "$BASE_DIR/Day13/git_backup.sh" "$repo_path"
+}
+function deploy_web_app() { 
+    read -rp "Enter deployment directory: " deploy_dir
+    read -rp "Enter GitHub repository URL: " repo_url
+    bash "$BASE_DIR/Day14/deploy.sh" "$deploy_dir" "$repo_url"
+}
 function validate_env_vars()       { bash "$BASE_DIR/Day15/validate_env.sh"; }
 function validate_env_vars_ci_cd() { bash "$BASE_DIR/Day15/validation_cicd_env.sh"; }
 function server_health_report()    { bash "$BASE_DIR/Day16/health_report.sh"; }
